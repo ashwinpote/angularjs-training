@@ -1,0 +1,41 @@
+<div class="tbl">
+    <table class="table table-striped table-bordered mtop">
+        <tr>
+            <th class="center_txt">Id</th>
+            <th class="center_txt">payer</th>
+            <th class="center_txt">payee</th>
+            <th class="center_txt">category</th>
+            <th class="center_txt">amount</th>
+            <!-- <th class="center_txt">date</th> -->
+            <th class="center_txt">modeOfPayment</th>
+            <th class="center_txt">noteType</th>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr ng-repeat="inc in incomes">
+            <td>{{inc.transactionId}}</td>
+            <td>{{inc.payer}}</td>
+            <td>{{inc.payee}}</td>
+            <td>{{inc.category}}</td>
+            <td>{{inc.amount}}</td>
+          <!--   <td>{{inc.date}}</td> -->
+            <td>{{inc.modeOfPayment}}</td>
+            <td>{{inc.noteType}}</td>
+            <td>
+                <a href="#editIncome"class="btn btn-default" ng-click="edit(inc,'incomes')" > Edit </a>
+            </td>
+            <td>
+                <input class="btn btn-default" type="button" ng-click="delete(inc,'incomes')" value="Delete">
+            </td>
+        </tr>
+        <tfoot>
+            <td></td>
+            <td></td><!-- 
+            <td></td> -->
+            <td>
+                <th class="center_txt">Total Income</th>
+                <th class="center_txt">{{ incomeTotal }}</th>
+            </td>
+        </tfoot>
+    </table>
+</div>
