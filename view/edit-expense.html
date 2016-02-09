@@ -17,10 +17,9 @@
         </div>
         <div class="form-group">
             <input type="text" placeholder="Enter Amount" class="form-control" ng-model="expense.amount" name="amount" required/>
-           
         </div>
         <div class="form-group">
-            <!-- <input class="form-control" ng-model="example.value" type="datetime-local" ng-model="user.date" placeholder="yyyy-MM-ddTHH:mm:ss" min="2001-01-01T00:00:00" max="2016-12-31T00:00:00" required /> -->
+            <input class="form-control" type="date" ng-model="expense.date" placeholder="dd-MM-yyyy" required />
         </div>
         <div class="form-group">
             <select name="modeofpayment" class="form-control" ng-model="expense.modeOfPayment" required ng-options="mode.mode as mode.modeofpayment for mode in modeofpayments">

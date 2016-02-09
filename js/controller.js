@@ -1,45 +1,61 @@
-myApp.controller('myController', function($scope, dataService) {
+myApp.controller('myController', function($scope, mainService) {
 
     init();
 
+    $scope.empList = [];
+    $scope.income = {};
+
     function init() {
-        dataService.getincomejson().then(function(data) {
+        mainService.getincomejson().then(function(data) {
             $scope.incomes = data;
-            $scope.incomeTotal = dataService.getTotal(data);
+            $scope.incomeTotal = mainService.getTotal(data);
         });
-        dataService.getexpensejson().then(function(data) {
+        mainService.getexpensejson().then(function(data) {
             $scope.expense = data;
-            $scope.expenseTotal = dataService.getTotal(data);
+            $scope.expenseTotal = mainService.getTotal(data);
         });
-        $scope.modeofpayments = dataService.modeofpayments();
-        $scope.categorys = dataService.categorys();
+        $scope.modeofpayments = mainService.modeofpayments();
+        $scope.categorys = mainService.categorys();
     };
 
     $scope.submitMyForm = function(formdata, sel_Arr, sel_Dept) {
         if (sel_Dept) {
-            dataService.save(formdata, sel_Arr, sel_Dept);
+            mainService.save(formdata, sel_Arr, sel_Dept);
         } else {
-            dataService.save(formdata, sel_Arr, sel_Dept);
+            mainService.save(formdata, sel_Arr, sel_Dept);
+        }
+
+        if (sel_Arr == "incomes") {
+            incomeForm.reset();
+        } else {
+            expenseForm.reset();
         }
         getSum();
-        //$scope.incomeForm.$setPristine();
     };
 
     $scope.edit = function(item, selObj) {
-        dataService.edit(item, selObj, $scope);
+        mainService.edit(item, selObj, $scope);
     }
 
     $scope.delete = function(item, selObj) {
-        dataService.delete(item, selObj);
+        mainService.delete(item, selObj);
         getSum();
     };
 
     $scope.cancel = function() {
-        dataService.cancel($scope);
+        mainService.cancel($scope);
     };
 
     function getSum() {
-        $scope.incomeTotal = dataService.getTotal($scope.incomes);
-        $scope.expenseTotal = dataService.getTotal($scope.expense);
+        $scope.incomeTotal = mainService.getTotal($scope.incomes);
+        $scope.expenseTotal = mainService.getTotal($scope.expense);
     }
+});
+
+myApp.controller('addIncomeCtl', function($scope, mainService) {
+   $scope.income.date = new Date();
+});
+
+myApp.controller('addExpenseCtl', function($scope, mainService) {
+   $scope.expense.date = new Date();
 });

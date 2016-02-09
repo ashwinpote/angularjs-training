@@ -6,7 +6,7 @@
             <th class="center_txt">payee</th>
             <th class="center_txt">category</th>
             <th class="center_txt">amount</th>
-            <!-- <th class="center_txt">date</th> -->
+            <th class="center_txt">date</th>
             <th class="center_txt">modeOfPayment</th>
             <th class="center_txt">noteType</th>
             <td></td>
@@ -18,7 +18,7 @@
             <td>{{inc.payee}}</td>
             <td>{{inc.category}}</td>
             <td>{{inc.amount}}</td>
-          <!--   <td>{{inc.date}}</td> -->
+            <td>{{inc.date | date : 'dd-MM-yyyy'}}</td>
             <td>{{inc.modeOfPayment}}</td>
             <td>{{inc.noteType}}</td>
             <td>

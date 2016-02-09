@@ -1,4 +1,4 @@
-myApp.service('dataService', ["$q", "$http", function($q, $http) {
+myApp.service('dataService', ["$q", "$http", "$filter", function($q, $http, $filter) {
 
     var obj = {};
 
@@ -71,6 +71,7 @@ myApp.service('dataService', ["$q", "$http", function($q, $http) {
             $scope.incomes.payee = obj.incomes[obj.itemIndex].payee;
             $scope.incomes.category = obj.incomes[obj.itemIndex].category;
             $scope.incomes.amount = obj.incomes[obj.itemIndex].amount;
+            $scope.incomes.date = obj.incomes[obj.itemIndex].date;
             $scope.incomes.modeOfPayment = obj.incomes[obj.itemIndex].modeOfPayment;
             $scope.incomes.noteType = obj.incomes[obj.itemIndex].noteType;
         } else {
@@ -81,6 +82,7 @@ myApp.service('dataService', ["$q", "$http", function($q, $http) {
             $scope.expense.category = obj.expense[obj.itemIndex].category;
             $scope.expense.amount = obj.expense[obj.itemIndex].amount;
             $scope.expense.modeOfPayment = obj.expense[obj.itemIndex].modeOfPayment;
+            $scope.expense.date = obj.expense[obj.itemIndex].date;
             $scope.expense.noteType = obj.expense[obj.itemIndex].noteType;
             $scope.expense[obj.itemIndex] = $scope.expense;
         }
@@ -89,11 +91,9 @@ myApp.service('dataService', ["$q", "$http", function($q, $http) {
     obj.save = function(data, checkSelect, flag) {
         if (checkSelect == "incomes" && flag) {
             obj.checkSel = obj.incomes;
-            console.log(obj.checkSel);
             obj.checkSel.push(data);
         } else if (checkSelect == "expense" && flag) {
             obj.checkSel = obj.expense;
-            console.log(obj.checkSel);
             obj.checkSel.push(data);
         }
         if (checkSelect == "incomes" && !flag) {
@@ -107,7 +107,7 @@ myApp.service('dataService', ["$q", "$http", function($q, $http) {
     obj.getexpensejson = function(q) {
         var deferred = $q.defer();
         var len = 0;
-        $http.get("js/expense.json")
+        $http.get("js/json/expense.json")
             .then(function(response) {
                 obj.expense = response.data;
                 len = response.data.length;
@@ -119,7 +119,7 @@ myApp.service('dataService', ["$q", "$http", function($q, $http) {
 
     obj.getincomejson = function(q) {
         var deferred = $q.defer();
-        $http.get("js/income.json")
+        $http.get("js/json/income.json")
             .then(function(response) {
                 obj.incomes = response.data;
                 deferred.resolve(response.data);

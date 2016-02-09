@@ -2,22 +2,24 @@ myApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
         when('/showIncome', {
-            templateUrl: 'templates/show-income.html'
+            templateUrl: 'view/show-income.html'
         }).
         when('/showExpense', {
-            templateUrl: 'templates/show-expense.html'
+            templateUrl: 'view/show-expense.html'
         }).
         when('/addIncome', {
-            templateUrl: 'templates/add-income.html'
+            templateUrl: 'view/add-income.html',
+            controller:'addIncomeCtl'
         }).
         when('/addExpense', {
-            templateUrl: 'templates/add-expense.html'
+            templateUrl: 'view/add-expense.html',
+            controller:'addExpenseCtl'
         }).
         when('/editIncome', {
-            templateUrl: 'templates/edit-income.html'
+            templateUrl: 'view/edit-income.html'
         }).
         when('/editExpense', {
-            templateUrl: 'templates/edit-expense.html'
+            templateUrl: 'view/edit-expense.html'
         }).
         otherwise({
             redirectTo: '/'

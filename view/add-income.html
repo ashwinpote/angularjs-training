@@ -1,0 +1,34 @@
+<div class="col-sm-4" ng-controller="addIncomeCtl">
+    <h4>Add Income </h4>
+    <form name="incomeForm" angular-validator-submit="submitMyForm(income,'incomes',true)" angular-validator novalidate>
+        <div class="form-group">
+            <input type="number" placeholder="Enter transaction id" name="transactionId" class="form-control" ng-model="income.transactionId" required-message="transactionId this is required" min="0" required>
+        </div>
+        <div class="form-group">
+            <input type="text" placeholder="Enter Payer" name="payer" class="form-control" ng-model="income.payer" ng-minlength="3" required>
+        </div>
+        <div class="form-group">
+            <input type="text" placeholder="Enter Payee" class="form-control" ng-model="income.payee" name="payee" minlength="3" required>
+        </div>
+        <div class="form-group">
+            <select name="category" class="form-control" ng-model="income.category" ng-options="cate.categoryID as cate.category for cate in categorys" required>
+                <option value="" selected="">Select Category</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="text" placeholder="Enter Amount" class="form-control" ng-model="income.amount" name="amount" required/>
+        </div>
+        <div class="form-group">
+             <input class="form-control" type="date" ng-model="income.date" placeholder="dd-MM-yyyy" min="01-01-2000" max="31-12-2021" required />
+        </div>
+        <div class="form-group">
+            <select name="modeofpayment" class="form-control" ng-model="income.modeOfPayment" required ng-options="mode.mode as mode.modeofpayment for mode in modeofpayments">
+                <option value="" selected="">Select mode of payment</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input name="noteType" class="form-control" type="text" placeholder="Enter the note" ng-model="income.noteType" ng-maxlength="20" required/>
+        </div>
+        <button type="submit" ng-disabled="incomeForm.$invalid" class="btn btn-default">Add Income</button>
+    </form>
+</div>

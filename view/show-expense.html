@@ -6,7 +6,7 @@
             <th class="center_txt">payee</th>
             <th class="center_txt">category</th>
             <th class="center_txt">amount</th>
-           <!--  <th class="center_txt">date</th> -->
+            <th class="center_txt">date</th>
             <th class="center_txt">modeOfPayment</th>
             <th class="center_txt">noteType</th>
             <td></td>
@@ -18,7 +18,7 @@
             <td>{{exp.payee}}</td>
             <td>{{exp.category}}</td>
             <td>{{exp.amount}}</td>
-          <!--   <td>{{exp.date}}</td> -->
+            <td>{{exp.date | date : 'dd-MM-yyyy'}}</td>
             <td>{{exp.modeOfPayment}}</td>
             <td>{{exp.noteType}}</td>
             <td>
