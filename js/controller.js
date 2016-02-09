@@ -22,6 +22,7 @@ myApp.controller('myController', function($scope, dataService) {
             dataService.save(formdata, sel_Arr, sel_Dept);
         }
         getSum();
+        //$scope.incomeForm.$setPristine();
     };
 
     $scope.edit = function(item, selObj) {
