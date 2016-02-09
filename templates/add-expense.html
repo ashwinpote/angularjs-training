@@ -1,6 +1,6 @@
-<div class="col-sm-4" ng-controller="addExpenseController">
-    <h2>Add Expense </h2>
-    <form name="expenseForm" angular-validator-submit="submitMyExpense(expense,false)" angular-validator novalidate>
+<div class="col-sm-4">
+    <h4>Add Expense </h4>
+    <form name="expenseForm" angular-validator-submit="submitMyForm(expense,'expense',true)" angular-validator novalidate>
         <div class="form-group">
             <input type="number" placeholder="Enter transaction id" name="transactionId" class="form-control" ng-model="expense.transactionId" required>
         </div>

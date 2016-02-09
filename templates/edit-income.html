@@ -1,6 +1,6 @@
 <div class="col-sm-4">
-    <h2>Edit Income </h2>
-    <form name="incomeForm" angular-validator-submit="submitMyIncome(incomes,false)" angular-validator novalidate>
+    <h4>Edit Income </h4>
+    <form name="incomeForm" angular-validator-submit="submitMyForm(incomes,'incomes',false)" angular-validator novalidate>
         <div class="form-group">
             <input type="number" placeholder="Enter transaction id" name="transactionId" class="form-control" ng-model="incomes.transactionId" required-message="'transactionId this is required'" required>
         </div>

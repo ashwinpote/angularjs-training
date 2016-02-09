@@ -1,6 +1,5 @@
 myApp.controller('myController', function($scope, dataService) {
 
-    var checkSel = "";
     init();
 
     function init() {
@@ -12,25 +11,15 @@ myApp.controller('myController', function($scope, dataService) {
             $scope.expense = data;
             $scope.expenseTotal = dataService.getTotal(data);
         });
-
         $scope.modeofpayments = dataService.modeofpayments();
         $scope.categorys = dataService.categorys();
     };
 
-    $scope.submitMyIncome = function(incomes, sel_Dept) {
+    $scope.submitMyForm = function(formdata, sel_Arr, sel_Dept) {
         if (sel_Dept) {
-            dataService.save(incomes, "incomes", sel_Dept);
+            dataService.save(formdata, sel_Arr, sel_Dept);
         } else {
-            dataService.save(incomes, "incomes", sel_Dept);
-        }
-        getSum();
-    };
-
-    $scope.submitMyExpense = function(expense, sel_Dept) {
-        if (sel_Dept) {
-            dataService.save(expense, "expense", sel_Dept);
-        } else {
-            dataService.save(expense, "expense", sel_Dept);
+            dataService.save(formdata, sel_Arr, sel_Dept);
         }
         getSum();
     };
@@ -52,9 +41,4 @@ myApp.controller('myController', function($scope, dataService) {
         $scope.incomeTotal = dataService.getTotal($scope.incomes);
         $scope.expenseTotal = dataService.getTotal($scope.expense);
     }
-});
-
-myApp.controller('addIncomeController', function($scope) {
-    console.log($scope);
-    console.log($scope.incomeForm);
 });

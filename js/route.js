@@ -8,12 +8,10 @@ myApp.config(['$routeProvider',
             templateUrl: 'templates/show-expense.html'
         }).
         when('/addIncome', {
-            templateUrl: 'templates/add-income.html',
-            controller: 'addIncomeController'
+            templateUrl: 'templates/add-income.html'
         }).
         when('/addExpense', {
-            templateUrl: 'templates/add-expense.html',
-            controller: 'addExpenseController'
+            templateUrl: 'templates/add-expense.html'
         }).
         when('/editIncome', {
             templateUrl: 'templates/edit-income.html'

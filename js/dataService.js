@@ -55,13 +55,9 @@ myApp.service('dataService', ["$q", "$http", function($q, $http) {
     };
 
     obj.delete = function(item, selObj) {
-        if (selObj == "incomes") {
-            var index = obj.incomes.indexOf(item);
-            obj.incomes.splice(index, 1);
-        } else {
-            var index = obj.expense.indexOf(item);
-            obj.expense.splice(index, 1);
-        }
+        var setObj = (selObj == "incomes") ? obj.incomes : obj.expense;
+        var index = setObj.indexOf(item);
+        setObj.splice(index, 1);
         if (index == obj.itemIndex) {
             obj.itemIndex = -1;
         }
@@ -93,9 +89,11 @@ myApp.service('dataService', ["$q", "$http", function($q, $http) {
     obj.save = function(data, checkSelect, flag) {
         if (checkSelect == "incomes" && flag) {
             obj.checkSel = obj.incomes;
+            console.log(obj.checkSel);
             obj.checkSel.push(data);
         } else if (checkSelect == "expense" && flag) {
             obj.checkSel = obj.expense;
+            console.log(obj.checkSel);
             obj.checkSel.push(data);
         }
         if (checkSelect == "incomes" && !flag) {
@@ -121,12 +119,9 @@ myApp.service('dataService', ["$q", "$http", function($q, $http) {
 
     obj.getincomejson = function(q) {
         var deferred = $q.defer();
-        var len = 0;
         $http.get("js/income.json")
             .then(function(response) {
                 obj.incomes = response.data;
-                len = response.data.length;
-                obj.incomeTransactionId = response.data[len - 1].transactionId;
                 deferred.resolve(response.data);
             });
         return deferred.promise;
@@ -138,6 +133,11 @@ myApp.service('dataService', ["$q", "$http", function($q, $http) {
             Total += parseFloat(item.amount);
         });
         return Total;
+    }
+
+    obj.getincomeTransactionId = function() {
+        obj.incomeTransactionId = obj.incomes[obj.incomes.length - 1].transactionId;
+        return obj.incomeTransactionId;
     }
     return obj;
 }]);
