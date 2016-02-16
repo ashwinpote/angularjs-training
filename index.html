@@ -1,22 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myapp">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Expense Manager</title>
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/scrolling-nav.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href="css/expManager.css" rel="stylesheet">
     <script src="angular/angular.js" type="text/javascript"></script>
     <script src="js/app/app.js" type="text/javascript"></script>
-    <script src="js/service/mainService.js" type="text/javascript"></script>
-    <script src="js/controller/mainController.js" type="text/javascript"></script> 
-    <script src="angular/angular-validator.min.js" type="text/javascript"></script>
     <script src="angular/angular-route.min.js"></script>
+    <script src="angular/angular-validator.min.js" type="text/javascript"></script>
     <script src="js/route/route.js" type="text/javascript"></script>
+    <script src="js/service/mainService.js" type="text/javascript"></script>
+    <script src="js/controller/mainController.js" type="text/javascript"></script>
+    <script src="js/controller/addIncomeCtl.js" type="text/javascript"></script>
+    <script src="js/controller/addExpenseCtl.js" type="text/javascript"></script>
+    <script src="js/controller/showIncomeCtl.js" type="text/javascript"></script>
+    <script src="js/controller/showExpenseCtl.js" type="text/javascript"></script>
+    <style>
+    i.custom {
+        font-size: 2em;
+        color: gray;
+    }
+    </style>
 </head>
-<body id="page-top" ng-controller="myController">
+
+<body ng-controller="myController">
     <section id="intro" class="intro-section">
         <div class="container">
             <h4>Expense Manager</h4>
@@ -31,22 +44,22 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td> {{ incomeTotal }}</td>
-                            <td> {{ expenseTotal }}</td>
-                            <td> {{(incomeTotal - expenseTotal).toFixed(2)}} </td>
+                            <td> <i class="fa fa-inr" style="font-size:18px"></i><span> {{ mainincomeTotal }} </span></td>
+                            <td> <span><i class="fa fa-inr" style="font-size:18px"></i> {{ mainexpenseTotal }}</span></td>
+                            <td> <span><i class="fa fa-inr" style="font-size:18px"></i> {{ mainTotal}} </span></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <a href="#showIncome" class="btn btn-default"> Show Income</a>
-            <a href="#showExpense" class="btn btn-default"> Show Expense</a>
-            <a href="#addIncome" class="btn btn-default"> Add Income</a>
-            <a href="#addExpense" class="btn btn-default"> Add Expense</a>
-            <br>
-            <br>
-            <div ng-view></div>
+            <a ui-sref="showIncome" class="btn btn-info"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Income</a>
+            <a ui-sref="showExpense" class="btn btn-info"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Expense</a>
+            <a ui-sref="addIncome" class="btn btn-info"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Income</a>
+            <a ui-sref="addExpense" class="btn btn-info"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Expense</a>
+            <div ui-view></div>
+        </div>
     </section>
     <script src="angular/jquery.js"></script>
     <script src="angular/bootstrap.min.js"></script>
 </body>
+
 </html>

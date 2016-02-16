@@ -1,28 +1,36 @@
-myApp.config(['$routeProvider',
-    function($routeProvider) {
-        $routeProvider.
-        when('/showIncome', {
-            templateUrl: 'view/show-income.html'
+myApp.config(['$stateProvider', '$urlRouterProvider',
+    function($stateProvider, $urlRouterProvider) {
+
+        $urlRouterProvider.otherwise('/showIncome');
+
+        $stateProvider.
+        state('showIncome', {
+            url: '/showIncome',
+            templateUrl: 'view/show-income.html',
+            controller: 'showIncomeCtl'
         }).
-        when('/showExpense', {
-            templateUrl: 'view/show-expense.html'
+        state('showExpense', {
+            url: '/showExpense',
+            templateUrl: 'view/show-expense.html',
+            controller: 'showExpenseCtl'
         }).
-        when('/addIncome', {
-            templateUrl: 'view/add-income.html',
-            controller:'addIncomeCtl'
+        state('addIncome', {
+            url: '/addIncome',
+            controller: 'addIncomeCtl',
+            templateUrl: 'view/add-income.html'
         }).
-        when('/addExpense', {
-            templateUrl: 'view/add-expense.html',
-            controller:'addExpenseCtl'
+        state('addExpense', {
+            url: '/addExpense',
+            controller: 'addExpenseCtl',
+            templateUrl: 'view/add-expense.html'
         }).
-        when('/editIncome', {
+        state('editIncome', {
+            url: '/editIncome',
             templateUrl: 'view/edit-income.html'
         }).
-        when('/editExpense', {
+        state('editExpense', {
+            url: '/editExpense',
             templateUrl: 'view/edit-expense.html'
-        }).
-        otherwise({
-            redirectTo: '/'
         });
     }
 ]);

@@ -1,3 +1,3 @@
 'use strict';
 
-var myApp = angular.module("myapp",['angularValidator','ngRoute']);
+var myApp = angular.module("myapp",['angularValidator','ui.router']);

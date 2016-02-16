@@ -1,28 +1,10 @@
 [{
-        "transactionId": 1,
-        "payer": "vijay",
-        "payee": "company name",
-        "category": "FD Intrest",
-        "amount": "2000",
-        "date": "1-2-2016",
-        "modeOfPayment": "Cheque",
-        "noteType": "income"
-    }, {
-        "transactionId": 2,
-        "payer": "ajay",
-        "payee": "abc",
-        "category": "Share Market",
-        "amount": "1000",
-        "date": "8-9-2016",
-        "modeOfPayment": "Cheque",
-        "noteType": "income"
-    }, {
-        "transactionId": 3,
-        "payer": "ramesh",
-        "payee": "abc",
-        "category": "Mutual Funds",
-        "amount": "2000",
-        "date": "1-1-2016",
-        "modeOfPayment": "Cheque",
-        "noteType": "income"
+        "transactionId": "",
+        "payer": "",
+        "payee": "",
+        "category": "",
+        "amount": "",
+        "date": "",
+        "modeOfPayment": "",
+        "noteType": ""
     }]
