@@ -36,6 +36,11 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             url: '/showReport',
             controller: 'showReportCtl',
             templateUrl: 'view/show-report.html'
+        }).
+        state('showSetting', {
+            url: '/showSetting',
+            controller: 'showSettingCtl',
+            templateUrl: 'view/show-setting.html'
         });
     }
 ]);

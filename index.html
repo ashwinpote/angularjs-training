@@ -24,6 +24,7 @@
     <script src="js/controller/showIncomeCtl.js" type="text/javascript"></script>
     <script src="js/controller/showExpenseCtl.js" type="text/javascript"></script>
     <script src="js/controller/showReportCtl.js" type="text/javascript"></script>
+    <script src="js/controller/showSettingCtl.js" type="text/javascript"></script>
 </head>
 
 <body ng-controller="myController">
@@ -44,6 +45,9 @@
                 </li>
                 <li>
                     <a ui-sref="showReport">Show Report</a>
+                </li>
+                <li>
+                    <a ui-sref="showSetting">Settings</a>
                 </li>
             </ul>
         </div>
@@ -74,7 +78,13 @@
                 <a href="#menu-toggle" class="btn btn-info" id="menu-toggle">Toggle Menu</a>
             </div>
         </div>
+        
     </div>
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted"><div my-notification-scope></div></p>
+        </div>
+    </footer>
     <script src="angular/jquery.js"></script>
     <script src="angular/bootstrap.min.js"></script>
     <!-- Menu Toggle Script -->

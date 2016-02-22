@@ -11,7 +11,7 @@
         "transactionId": 2,
         "payer": "ajay",
         "payee": "abc",
-        "category": "FD Intrest",
+        "category": "Share Market",
         "amount": "1000",
         "date": "8-9-2016",
         "modeOfPayment": "Cheque",

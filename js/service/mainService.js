@@ -3,6 +3,8 @@ myApp.service('mainService', ["$q", "$http", "$filter", function($q, $http, $fil
     var obj = {};
     obj.incomesData = [];
     obj.expenseData = [];
+    obj.incomesNotify = [];
+    obj.expenseNotify = [];
     obj.incomeTransactionId = 0;
     obj.expenseTransactionId = 0;
     obj.incomeTotal = 0;
@@ -99,6 +101,14 @@ myApp.service('mainService', ["$q", "$http", "$filter", function($q, $http, $fil
             obj.incomesData.push(data);
         } else {
             obj.expenseData.push(data);
+        }
+    }
+
+    obj.saveNotify = function(data, selType) {
+        if (selType == "incomes") {
+            obj.incomesNotify.push(data);
+        } else {
+            obj.expenseNotify.push(data);
         }
     }
 
