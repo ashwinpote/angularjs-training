@@ -1,14 +1,17 @@
-describe('phonesApp', function() {
-    describe('phoneApp controllers', function() {
-        beforeEach(module('controllers'));
-        describe('PhoneListCtrl', function() {
-            it('should create "phones" model with 3 phones',
-                inject(function($rootScope, $controller) {
+describe('Filters', function() { 
+    beforeEach(module('myapp')); 
 
-                var scope = $rootScope.$new();
-                var ctrl = $controller("PhoneListCtrl", {$scope: scope });
-                expect(scope.phones.length).toBe(3);
-            }));
+    describe('reverse', function() { 
+
+        var reverse;
+        beforeEach(inject(function($filter) { 
+            reverse = $filter('reverse', {});
+        }));
+
+        it('Should reverse a string', function() { 
+            expect(reverse('ashwin')).toBe('niwhsa'); 
         });
+
     });
+
 });

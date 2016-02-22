@@ -2,11 +2,7 @@ myApp.controller('myController', function($scope, mainService, $rootScope) {
 
     $scope.orderByField = 'transactionId';
     $scope.reverseSort = false;
-
-    $scope.phones = [{ name: "Nexus S", snippet: "Fast..." },
-        { name: "Motorola XOOM...", snippet: "The Next...." },
-        { name: "MOTOROLA XOOM...", snippet: "The Next, Next..." }
-    ];
+    $scope.notificationMsg = "No Notification...";
 
     //***********Start function for income/expense data load from json************** 
     mainService.getincomejson().then(function(data) {
@@ -28,5 +24,9 @@ myApp.controller('myController', function($scope, mainService, $rootScope) {
 
     $rootScope.$on('handleTotal', function(event, args) {
         initTotal();
+    });
+
+    $rootScope.$on('handlenotify', function(event, args) {
+        $scope.notificationMsg = args;
     });
 });

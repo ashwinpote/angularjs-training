@@ -11,7 +11,7 @@
         "transactionId": 2,
         "payer": "Amit",
         "payee": "abc",
-        "category": "Mobile Recharge",
+        "category": "Light Bill",
         "amount": "200",
         "date": "8-1-2016",
         "modeOfPayment": "Online Debit Card",

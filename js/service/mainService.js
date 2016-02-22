@@ -105,7 +105,7 @@ myApp.service('mainService', ["$q", "$http", "$filter", function($q, $http, $fil
     }
 
     obj.saveNotify = function(data, selType) {
-        if (selType == "incomes") {
+        if (selType == "Income") {
             obj.incomesNotify.push(data);
         } else {
             obj.expenseNotify.push(data);
