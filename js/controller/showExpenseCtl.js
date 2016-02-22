@@ -1,6 +1,7 @@
 myApp.controller('showExpenseCtl', function($scope, mainService, $state, $rootScope) {
-    
+
     $scope.expense = mainService.expenseData;
+    $rootScope.$emit('handleTotal');
     $scope.expenseTotal = mainService.expenseTotal;
     $scope.modeofpayments = mainService.modeofpayments();
     $scope.categorys = mainService.categorys();

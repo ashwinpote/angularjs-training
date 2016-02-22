@@ -4,15 +4,15 @@
         <form name="expenseForm" angular-validator-submit="updateMyForm(expense,'expense')" angular-validator novalidate>
             <div class="form-group">
                 Transaction Id
-                <input type="number" placeholder="Enter transaction id" name="transactionId" class="form-control" ng-model="expense.transactionId" required>
+                <input type="number" name="transactionId" class="form-control" ng-model="expense.transactionId" required>
             </div>
             <div class="form-group">
                 Enter Payer
-                <input type="text" placeholder="Enter Payer" name="payer" class="form-control" ng-model="expense.payer" ng-minlength="3" required>
+                <input type="text" name="payer" class="form-control" ng-model="expense.payer" ng-minlength="3" required>
             </div>
             <div class="form-group">
                 Enter Payee
-                <input type="text" placeholder="Enter Payee" class="form-control" ng-model="expense.payee" name="payee" minlength="3" required>
+                <input type="text" class="form-control" ng-model="expense.payee" name="payee" minlength="3" required>
             </div>
             <div class="form-group">
                 <select name="category" class="form-control" ng-model="expense.category" ng-options="cate.categoryID as cate.category for cate in categorys" required>
@@ -21,11 +21,11 @@
             </div>
             <div class="form-group">
                 Enter Amount
-                <input type="text" placeholder="Enter Amount" class="form-control" ng-model="expense.amount" name="amount" required/>
+                <input type="number" step='0.01' value='0.00' class="form-control" min="0" ng-model="expense.amount" name="amount" required/>
             </div>
             <div class="form-group">
                 Enter Date
-                <input class="form-control" type="date" ng-model="expense.date" placeholder="dd-MM-yyyy" required />
+                <input class="form-control" type="date" ng-model="expense.date" min="01-01-2000" max="31-12-2021" required />
             </div>
             <div class="form-group">
                 <select name="modeofpayment" class="form-control" ng-model="expense.modeOfPayment" required ng-options="mode.mode as mode.modeofpayment for mode in modeofpayments">
@@ -34,7 +34,7 @@
             </div>
             <div class="form-group">
                 Enter the note
-                <input name="noteType" class="form-control" type="text" placeholder="Enter the note" ng-model="expense.noteType" ng-maxlength="20" required/>
+                <input name="noteType" class="form-control" type="text" ng-model="expense.noteType" ng-maxlength="20" required/>
             </div>
             <button type="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Expense

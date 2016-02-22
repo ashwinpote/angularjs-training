@@ -51,6 +51,32 @@ myApp.service('mainService', ["$q", "$http", "$filter", function($q, $http, $fil
         }];
     };
 
+    obj.getexpensejson = function(q) {
+        var deferred = $q.defer();
+        $http.get("js/json/expense.json")
+            .then(function(response) {
+                obj.expenseData = response.data;
+                deferred.resolve(response.data);
+            }).catch(function(e) {
+                console.log("$http error", e);
+                throw e;
+            });
+        return deferred.promise;
+    }
+
+    obj.getincomejson = function(q) {
+        var deferred = $q.defer();
+        $http.get("js/json/income.json")
+            .then(function(response) {
+                obj.incomesData = response.data;
+                deferred.resolve(response.data);
+            }).catch(function(e) {
+                console.log("$http  error", e);
+                throw e;
+            });
+        return deferred.promise;
+    }
+
     obj.delete = function(item, selObj) {
         var setObj = (selObj == "incomes") ? obj.incomesData : obj.expenseData;
         var index = setObj.indexOf(item);
@@ -78,9 +104,9 @@ myApp.service('mainService', ["$q", "$http", "$filter", function($q, $http, $fil
 
     obj.getTotal = function(data) {
         var Total = 0;
-        if(data == "income"){
+        if (data == "income") {
             data = obj.incomesData;
-        }else if(data == "expense"){
+        } else if (data == "expense") {
             data = obj.expenseData;
         }
         angular.forEach(data, function(item) {

@@ -21,11 +21,11 @@
             </div>
             <div class="form-group">
                 Enter Amount
-                <input type="text" class="form-control" ng-model="expense.amount" name="amount" required/>
+                <input type="number" step='0.01' value='0.00' class="form-control" min="0" ng-model="expense.amount" name="amount" required/>
             </div>
             <div class="form-group">
                 Enter Date
-                <input class="form-control" type="date" ng-model="expense.date" placeholder="dd-MM-yyyy" min="01-01-2000" max="31-12-2021" required />
+                <input class="form-control" type="date" ng-model="expense.date" min="01-01-2000" max="31-12-2021" required />
             </div>
             <div class="form-group">
                 <select name="modeofpayment" class="form-control" ng-model="expense.modeOfPayment" required ng-options="mode.mode as mode.modeofpayment for mode in modeofpayments">

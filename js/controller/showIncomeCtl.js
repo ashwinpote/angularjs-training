@@ -1,6 +1,7 @@
 myApp.controller('showIncomeCtl', function($scope, mainService, $state, $rootScope) {
 
     $scope.income = mainService.incomesData;
+    $rootScope.$emit('handleTotal');
     $scope.incomeTotal = mainService.incomeTotal;
     $scope.modeofpayments = mainService.modeofpayments();
     $scope.categorys = mainService.categorys();

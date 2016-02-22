@@ -31,6 +31,11 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         state('editExpense', {
             url: '/editExpense',
             templateUrl: 'view/edit-expense.html'
+        }).
+        state('showReport', {
+            url: '/showReport',
+            controller: 'showReportCtl',
+            templateUrl: 'view/show-report.html'
         });
     }
 ]);

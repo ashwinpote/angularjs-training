@@ -1,11 +1,19 @@
-myApp.controller('myController', function($scope, mainService, $rootScope) {   
+myApp.controller('myController', function($scope, mainService, $rootScope) {
 
-    init();
     $scope.orderByField = 'transactionId';
     $scope.reverseSort = false;
 
+    //***********Start function for income/expense data load from json************** 
+    mainService.getincomejson().then(function(data) {
+        mainService.incomesData = data;
+    });
 
-    function init() {
+    mainService.getexpensejson().then(function(data) {
+        mainService.expenseData = data;
+    });
+    //***********End function******************************************************* 
+
+    function initTotal() {
         mainService.incomeTotal = mainService.getTotal("income");
         mainService.expenseTotal = mainService.getTotal("expense");
         $scope.mainincomeTotal = mainService.incomeTotal;
@@ -14,6 +22,6 @@ myApp.controller('myController', function($scope, mainService, $rootScope) {
     }
 
     $rootScope.$on('handleTotal', function(event, args) {
-    	init();
+        initTotal();
     });
 });
