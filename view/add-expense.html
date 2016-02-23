@@ -1,7 +1,7 @@
 <div ng-controller="addExpenseCtl">
     <div class="col-sm-4">
         <h4>Add Expense </h4>
-        <form name="expenseForm" angular-validator-submit="submitMyForm(expense,'expense')" angular-validator novalidate>
+        <form name="expenseForm" angular-validator-submit="submitMyForm('expense',expense)" angular-validator novalidate>
             <div class="form-group">
                 Transaction Id
                 <input type="number" name="transactionId" class="form-control" ng-model="expense.transactionId" disabled required>

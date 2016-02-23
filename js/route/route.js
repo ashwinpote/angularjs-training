@@ -26,7 +26,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         }).
         state('editIncome', {
             url: '/editIncome',
-            templateUrl: 'view/edit-income.html'
+            templateUrl: 'view/edit-income.html',
         }).
         state('editExpense', {
             url: '/editExpense',

@@ -3,7 +3,7 @@
         "payer": "Ashwin",
         "payee": "abc",
         "category": "Home Rent",
-        "amount": "200",
+        "amount": "200.00",
         "date": "5-9-2015",
         "modeOfPayment": "Online Debit Card",
         "noteType": "expense"
@@ -12,7 +12,7 @@
         "payer": "Amit",
         "payee": "abc",
         "category": "Light Bill",
-        "amount": "200",
+        "amount": "200.00",
         "date": "8-1-2016",
         "modeOfPayment": "Online Debit Card",
         "noteType": "expense"
@@ -21,7 +21,7 @@
         "payer": "Sagar",
         "payee": "abc",
         "category": "Mobile Recharge",
-        "amount": "200",
+        "amount": "200.00",
         "date": "1-1-2016",
         "modeOfPayment": "Online Credit Card",
         "noteType": "expense"

@@ -5,9 +5,10 @@ myApp.controller('addExpenseCtl', function($scope, mainService, $state, $rootSco
     $scope.categorys = mainService.categorys();
     $scope.expense.date = new Date();
     $scope.expense.transactionId = mainService.getexpenseTransactionId() + 1;
+    $scope.expense.amount = parseFloat("0.00").toFixed(2);
 
-    $scope.submitMyForm = function(formdata, sel_type) {
-        mainService.save(formdata, sel_type);
+    $scope.submitMyForm = function(sel_type, formdata) {
+        mainService.save(sel_type, formdata);
         $rootScope.$emit('handleTotal');
         $state.go('showExpense');
     };

@@ -1,7 +1,7 @@
 <div ng-controller="addIncomeCtl">
     <div class="col-sm-4">
         <h4>Add Income </h4>
-        <form name="incomeForm" angular-validator-submit="submitMyForm(income,'incomes')" angular-validator novalidate>
+        <form name="incomeForm" angular-validator-submit="submitMyForm('incomes',income)" angular-validator novalidate>
             <div class="form-group">
                 Transaction Id
                 <input type="number" name="transactionId" class="form-control" ng-model="income.transactionId" required-message="transactionId this is required" min="0" disabled required>
@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 Enter Amount
-                <input type="number" step='0.01' value='0.00' class="form-control" min="0" ng-model="income.amount" name="amount" required/>
+                <input type="number" step='0.01' value="0.00" class="form-control" min="0" ng-model="income.amount" name="amount" required/>
             </div>
             <div class="form-group">
                 Enter Date

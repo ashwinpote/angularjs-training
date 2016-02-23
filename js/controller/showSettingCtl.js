@@ -14,47 +14,44 @@ myApp.controller('showSettingCtl', function($scope, mainService, $rootScope, $in
 
     $scope.submitMyForm = function(data) {
         mainService.saveNotify(data, data.value);
-        show(data.value);
+        show(data.value, data.recurrType);
         settingForm.reset();
     }
 
-    function show(checkRadioOpt) {
+    function show(checkRadioOpt, recurType) {
         if (checkRadioOpt == "Income") {
-            console.log("Income",mainService.incomesNotify)
-            for (var i = 0; i < mainService.incomesNotify.length; i++) {
-                for (var j = 0; j < mainService.incomesData.length; j++) {
-                    if (mainService.incomesData[j].category == mainService.incomesNotify[i].category) {
-                        console.log(mainService.incomesData[j].category)
-                        amt.type = "Income";
-                        amt.amount = mainService.incomesData[j].amount;
-                        amt.date = mainService.incomesData[j].date;
-                        amt.category = mainService.incomesNotify[i].category;
-                        showAmt.push(amt);
-                    }
-                }
-            }
+            bindNotify("Income", mainService.incomesNotify, mainService.incomesData, recurType);
         } else if (checkRadioOpt == "Expense") {
-            for (var i = 0; i < mainService.expenseNotify.length; i++) {
-                for (var j = 0; j < mainService.expenseData.length; j++) {
-                    if (mainService.expenseData[j].category == mainService.expenseNotify[i].category) {
-                        console.log(mainService.expenseData[j].category)
-                        amt.type = "Expense";
-                        amt.amount = mainService.expenseData[j].amount;
-                        amt.date = mainService.expenseData[j].date;
-                        amt.category = mainService.expenseNotify[i].category;
-                        showAmt.push(amt);
-                        //amt={"Expense", mainService.expenseData[j].amount, mainService.expenseData[j].date, mainService.expenseNotify[i].category};
+            bindNotify("Expense", mainService.expenseNotify, mainService.expenseData, recurType);
+        }
+    }
+
+    function bindNotify(selType, notifyArr, incomeArr, recurType) {
+        console.log(notifyArr)
+        for (var i = 0; i < notifyArr.length; i++) {
+            for (var j = 0; j < incomeArr.length; j++) {
+                if (incomeArr[j].category == notifyArr[i].category) {
+                    amt.type = selType;
+                    amt.amount = incomeArr[j].amount;
+                    console.log(recurType)
+                    if (recurType == "yearly") {
+                        var userdob = new Date(incomeArr[j].date);
+                        userdob.setYear(userdob.getFullYear() + 1)
+                        amt.date = userdob;
+                    } else {
+                        var userdob = new Date(incomeArr[j].date);
+                        userdob.setYear(userdob.getMonth() + 1)
+                        amt.date = userdob;
                     }
+
+                    amt.category = notifyArr[i].category;
+                    showAmt.push(amt);
                 }
             }
         }
-        console.log(showAmt)
-
-
         for (var i = 0; i < showAmt.length; i++) {
-            notification = showAmt[i]["type"] + " -- " + showAmt[i]["category"] + " -- Due Date: " + showAmt[i]["date"] + " -- amount: " + showAmt[i]["amount"] + " -- ";
+            notification = "[ " + showAmt[i]["type"] + " -- " + showAmt[i]["category"] + " -- Due Date: " + showAmt[i]["date"] + " -- amount: " + showAmt[i]["amount"] + " ], ";
         }
-
         showNotify += notification;
         $rootScope.$emit('handlenotify', showNotify);
     }

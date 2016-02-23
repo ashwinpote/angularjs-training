@@ -1,4 +1,4 @@
-myApp.service('mainService', ["$q", "$http", "$filter", function($q, $http, $filter) {
+myApp.service('mainService', ["$q", "$http", function($q, $http) {
 
     var obj = {};
     obj.incomesData = [];
@@ -7,9 +7,6 @@ myApp.service('mainService', ["$q", "$http", "$filter", function($q, $http, $fil
     obj.expenseNotify = [];
     obj.incomeTransactionId = 0;
     obj.expenseTransactionId = 0;
-    obj.incomeTotal = 0;
-    obj.expenseTotal = 0;
-    obj.Total = 0;
     obj.itemIndex = -1;
 
     obj.modeofpayments = function() {
@@ -79,47 +76,33 @@ myApp.service('mainService', ["$q", "$http", "$filter", function($q, $http, $fil
         return deferred.promise;
     }
 
-    obj.delete = function(item, selObj) {
-        var setObj = (selObj == "incomes") ? obj.incomesData : obj.expenseData;
-        var index = setObj.indexOf(item);
-        setObj.splice(index, 1);
+    obj.delete = function(selType, index) {
+        var setObj = (selType == "incomes") ? obj.incomesData : obj.expenseData;
+        setObj.splice(index, 1)
         if (index == obj.itemIndex) {
             obj.itemIndex = -1;
         }
     }
 
     obj.update = function(selType, data) {
-        if (selType == "incomes") {
-            obj.incomesData[obj.itemIndex] = data;
-        } else {
-            obj.expenseData[obj.itemIndex] = data;
-        }
+        var setObj = (selType == "incomes") ? obj.incomesData : obj.expenseData;
+        setObj[obj.itemIndex] = data;
     }
 
-    obj.save = function(data, selType) {
-        if (selType == "incomes") {
-            obj.incomesData.push(data);
-        } else {
-            obj.expenseData.push(data);
-        }
+    obj.save = function(selType, data) {
+        var setObj = (selType == "incomes") ? obj.incomesData : obj.expenseData;
+        setObj.push(data);
     }
 
     obj.saveNotify = function(data, selType) {
-        if (selType == "Income") {
-            obj.incomesNotify.push(data);
-        } else {
-            obj.expenseNotify.push(data);
-        }
+        var setObj = (selType == "Income") ? obj.incomesNotify : obj.expenseNotify;
+        setObj.push(data);
     }
 
-    obj.getTotal = function(data) {
+    obj.getTotal = function(selObj) {
         var Total = 0;
-        if (data == "income") {
-            data = obj.incomesData;
-        } else if (data == "expense") {
-            data = obj.expenseData;
-        }
-        angular.forEach(data, function(item) {
+        var setObj = (selObj == "income") ? obj.incomesData : obj.expenseData;
+        angular.forEach(setObj, function(item) {
             Total += parseFloat(item.amount);
         });
         return Total;
