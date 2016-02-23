@@ -93,17 +93,20 @@ body { background-color: #eeeeee; padding: 0; margin: 5px; overflow-y: scroll; }
 </style>
 </head>
 
-<body id="HTMLReporter" class="html-reporter">
-<h1>Tested in PhantomJS 2.1.1 (Windows 7 0.0.0) on Mon Feb 22 2016</h1>
+<body id="HTMLReporter" class="html-reporter showDetails">
+<h1>Tested in PhantomJS 2.1.1 (Windows 7 0.0.0) on Wed Feb 24 2016</h1>
 
 <div class="alert">
 
 
+<!-- <span class="failingAlert bar">Failed 2 specs</span> -->
+<span class="failingAlert bar"><span class="fold-buttons"><a href="#" onclick="fold();">Fold</a> | 
+  <a href="#" onclick="unfold();">Unfold</a></span>2 specs, 2 failed, 0 pending</span>
+<span class="resultsMenu bar">
+<a class="summaryMenuItem" onclick="showSummary();" href="#">Spec List<a>|<a 
+   class="detailsMenuItem" onclick="showFailures();" href="#">Failures</a>
+</span>
 
-  
-  <span class="passingAlert bar"><span class="fold-buttons"><a href="#" onclick="fold();">Fold</a> | 
-  <a href="#" onclick="unfold();">Unfold</a></span>1 specs, 0 failed, 0 pending</span>
-  
 
 
 </div>
@@ -114,11 +117,15 @@ body { background-color: #eeeeee; padding: 0; margin: 5px; overflow-y: scroll; }
   
   
   
-    <div class="suite passed">
-      <span class="description">Filters reverse</span>
+    <div class="suite failed">
+      <span class="description">myapp MyCtrl</span>
     
-      <div class="specSummary passed">
-      <span class="description">Should reverse a string</span>
+      <div class="specSummary failed">
+      <span class="description">notification text check</span>
+      </div>
+    
+      <div class="specSummary failed">
+      <span class="description">encountered a declaration exception</span>
       </div>
     
     </div>
@@ -127,6 +134,43 @@ body { background-color: #eeeeee; padding: 0; margin: 5px; overflow-y: scroll; }
 </div>
 
 <div id="details">
+  
+  
+  <div class="specDetail failed">
+    <span class="description">myapp MyCtrl notification text check</span>
+    <div class="stackTrace">
+      <div class="resultMessage">Error: [$injector:unpr] Unknown provider: mainServiceProvider &lt;- mainService
+http://errors.angularjs.org/1.5.0/$injector/unpr?p0=mainServiceProvider%20%3C-%20mainService (line 4397)
+http://localhost:9876/base/angular/angular.js?7fe9d9cca8a32dbd859d791af18c3659bf2d2ee1:4397:86
+getService@http://localhost:9876/base/angular/angular.js?7fe9d9cca8a32dbd859d791af18c3659bf2d2ee1:4550:46
+http://localhost:9876/base/angular/angular.js?7fe9d9cca8a32dbd859d791af18c3659bf2d2ee1:4402:48
+getService@http://localhost:9876/base/angular/angular.js?7fe9d9cca8a32dbd859d791af18c3659bf2d2ee1:4550:46
+injectionArgs@http://localhost:9876/base/angular/angular.js?7fe9d9cca8a32dbd859d791af18c3659bf2d2ee1:4574:68
+invoke@http://localhost:9876/base/angular/angular.js?7fe9d9cca8a32dbd859d791af18c3659bf2d2ee1:4596:31
+workFn@http://localhost:9876/base/node_modules/angular-mocks/angular-mocks.js?9dbebaf59ea2da974e8b7071a720a24cf08ec76e:2810:26
+undefined,TypeError: undefined is not an object (evaluating 'scope.notificationMsg') in http://localhost:9876/base/test/test.js?4e4ec2c71e924f164a20428f873ee5aaa4473a23 (line 17)
+http://localhost:9876/base/test/test.js?4e4ec2c71e924f164a20428f873ee5aaa4473a23:17:25</div>
+    </div>
+  </div>
+  
+  <div class="specDetail failed">
+    <span class="description">myapp MyCtrl encountered a declaration exception</span>
+    <div class="stackTrace">
+      <div class="resultMessage">Error: [$injector:unpr] Unknown provider: mainServiceProvider &lt;- mainService
+http://errors.angularjs.org/1.5.0/$injector/unpr?p0=mainServiceProvider%20%3C-%20mainService in http://localhost:9876/base/angular/angular.js?7fe9d9cca8a32dbd859d791af18c3659bf2d2ee1 (line 4397)
+http://localhost:9876/base/angular/angular.js?7fe9d9cca8a32dbd859d791af18c3659bf2d2ee1:4397:86
+getService@http://localhost:9876/base/angular/angular.js?7fe9d9cca8a32dbd859d791af18c3659bf2d2ee1:4550:46
+http://localhost:9876/base/angular/angular.js?7fe9d9cca8a32dbd859d791af18c3659bf2d2ee1:4402:48
+getService@http://localhost:9876/base/angular/angular.js?7fe9d9cca8a32dbd859d791af18c3659bf2d2ee1:4550:46
+injectionArgs@http://localhost:9876/base/angular/angular.js?7fe9d9cca8a32dbd859d791af18c3659bf2d2ee1:4574:68
+invoke@http://localhost:9876/base/angular/angular.js?7fe9d9cca8a32dbd859d791af18c3659bf2d2ee1:4596:31
+workFn@http://localhost:9876/base/node_modules/angular-mocks/angular-mocks.js?9dbebaf59ea2da974e8b7071a720a24cf08ec76e:2810:26,ReferenceError: Can't find variable: mainService in http://localhost:9876/base/test/test.js?4e4ec2c71e924f164a20428f873ee5aaa4473a23 (line 20)
+http://localhost:9876/base/test/test.js?4e4ec2c71e924f164a20428f873ee5aaa4473a23:20:26
+http://localhost:9876/base/test/test.js?4e4ec2c71e924f164a20428f873ee5aaa4473a23:8:13
+global code@http://localhost:9876/base/test/test.js?4e4ec2c71e924f164a20428f873ee5aaa4473a23:1:9</div>
+    </div>
+  </div>
+  
   
 </div>
 
@@ -139,7 +183,7 @@ document.body.onkeypress = function (e) {
   switch (e.keyCode) {
     case 102: toggleFold(); break;
     case 49: showSummary(); break;
-    
+    case 50: showFailures(); break;
   }
 };
 
