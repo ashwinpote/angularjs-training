@@ -1,4 +1,4 @@
-myApp.controller('showSettingCtl', function($scope, mainService, $rootScope, $interval) {
+myApp.controller('showSettingCtl', function($scope, mainService, $rootScope, $interval, $filter) {
 
     $scope.categorys = mainService.categorys();
     $rootScope.$emit('handleTotal');
@@ -27,28 +27,26 @@ myApp.controller('showSettingCtl', function($scope, mainService, $rootScope, $in
     }
 
     function bindNotify(selType, notifyArr, incomeArr, recurType) {
-        console.log(notifyArr)
-        for (var i = 0; i < notifyArr.length; i++) {
+       for (var i = 0; i < notifyArr.length; i++) {
             for (var j = 0; j < incomeArr.length; j++) {
                 if (incomeArr[j].category == notifyArr[i].category) {
                     amt.type = selType;
                     amt.amount = incomeArr[j].amount;
-                    console.log(recurType)
                     if (recurType == "yearly") {
                         var userdob = new Date(incomeArr[j].date);
                         userdob.setYear(userdob.getFullYear() + 1)
-                        amt.date = userdob;
+                        amt.date = $filter('date')(new Date(userdob), 'dd-MM-yyyy');
                     } else {
                         var userdob = new Date(incomeArr[j].date);
-                        userdob.setYear(userdob.getMonth() + 1)
-                        amt.date = userdob;
-                    }
-
+                        userdob.setMonth(userdob.getMonth() + 1)
+                        amt.date = $filter('date')(new Date(userdob), 'dd-MM-yyyy');
+                    }                    
                     amt.category = notifyArr[i].category;
                     showAmt.push(amt);
                 }
             }
         }
+
         for (var i = 0; i < showAmt.length; i++) {
             notification = "[ " + showAmt[i]["type"] + " -- " + showAmt[i]["category"] + " -- Due Date: " + showAmt[i]["date"] + " -- amount: " + showAmt[i]["amount"] + " ], ";
         }
