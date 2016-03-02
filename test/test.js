@@ -1,22 +1,25 @@
-describe('myapp', function() {
+describe('main controller test suite', function() {
     var scope,
         controller;
-    beforeEach(function() {
-        angular.mock.module('myapp');
-    });
 
+    beforeEach( module('myapp') );
+    
     describe('MyCtrl', function() {
-        beforeEach(inject(function($rootScope, $controller,  _mainService_) {
+        beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
-            mainService = _mainService_;
-            controller = $controller('MyCtrl', {
-                '$scope': scope
+            controller = $controller;
+
+            controller('MyCtrl', {
+                $scope : scope
             });
         }));
-        it('notification text check', function() {
-            expect(scope.notificationMsg).toBe('No Notification...');
+
+        it( 'to check default notification msg is No Notification', function () {
+            expect( scope.notificationMsg ).toBe('No Notification...');
         });
 
-        spyOn(mainService, 'getTotal').andReturn(Total);
+         it( 'to check default value of reverse sort is false', function () {
+            expect( scope.reverseSort ).toBe( false );
+        });
     });
 });

@@ -1,9 +1,13 @@
 myApp.controller('editIncomeCtl', function($scope, mainService, $state, $rootScope) {
 
+    //***********Initialize******************************************************//
     $scope.income = {};
-    init();
+    $scope.categorys = mainService.categorys();
+    $scope.modeofpayments = mainService.modeofpayments();
+    initEdit();
 
-    function init() {
+    //***********For income data fill in form *********************************// 
+    function initEdit() {
         $scope.income.transactionId = mainService.incomesData[mainService.itemIndex].transactionId;
         $scope.income.payer = mainService.incomesData[mainService.itemIndex].payer;
         $scope.income.payee = mainService.incomesData[mainService.itemIndex].payee;
@@ -13,10 +17,13 @@ myApp.controller('editIncomeCtl', function($scope, mainService, $state, $rootSco
         $scope.income.modeOfPayment = mainService.incomesData[mainService.itemIndex].modeOfPayment;
         $scope.income.noteType = mainService.incomesData[mainService.itemIndex].noteType;
     };
+    //***********End Function*************************************************// 
 
-    $scope.updateMyForm = function(formdata) {
+    //***********For income data update **************************************// 
+    $scope.updateIncome = function(formdata) {
         mainService.update('incomes', formdata);
         $rootScope.$emit('handleTotal');
         $state.go('showIncome');
     };
+    //***********End Function*************************************************// 
 });

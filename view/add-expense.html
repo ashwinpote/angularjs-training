@@ -1,7 +1,7 @@
 <div ng-controller="addExpenseCtl">
     <div class="col-sm-4">
         <h4>Add Expense </h4>
-        <form name="expenseForm" angular-validator-submit="submitMyForm('expense',expense)" angular-validator novalidate>
+        <form name="expenseForm" angular-validator-submit="addExpense(expense)" angular-validator novalidate>
             <div class="form-group">
                 Transaction Id
                 <input type="number" name="transactionId" class="form-control" ng-model="expense.transactionId" disabled required>
@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 Enter Amount
-                <input type="number" step='0.01' value='0.00' class="form-control" min="0" ng-model="expense.amount" name="amount" required/>
+                <input type="number" step='0.01' ng-init="expense.amount=0.00" class="form-control" min="0" ng-model="expense.amount" name="amount" required/>
             </div>
             <div class="form-group">
                 Enter Date
@@ -35,8 +35,10 @@
             <div class="form-group">
                 Enter the note
                 <input name="noteType" class="form-control" type="text" ng-model="expense.noteType" ng-maxlength="20" required/>
+                <span style="color:red" ng-show="expenseForm.noteType.$error.maxlength">
+        Note Should Contain only 20 Characters</span>
             </div>
-            <button type="submit" class="btn btn-info">
+            <button type="submit" class="btn btn-info" data-toggle="tooltip" data-placement="left" title="Add {{ expense.payer }} record">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Expense
             </button>
         </form>

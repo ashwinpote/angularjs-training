@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myapp">
+<html lang="en" ng-app="expenseManager">
 
 <head>
     <meta charset="utf-8">
@@ -14,6 +14,7 @@
     <script src="js/app/app.js" type="text/javascript"></script>
     <script src="angular/angular-route.min.js"></script>
     <script src="angular/angular-validator.min.js" type="text/javascript"></script>
+    <script src="angular/angular-animate.min.js"></script>
     <script src="js/route/route.js" type="text/javascript"></script>
     <script src="js/service/mainService.js" type="text/javascript"></script>
     <script src="js/controller/mainController.js" type="text/javascript"></script>
@@ -27,15 +28,13 @@
     <script src="js/controller/editExpenseCtl.js" type="text/javascript"></script>
 </head>
 
-<body ng-controller="myController">
+<body ng-controller="myExpMgr">
     <div id="wrapper">
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
-                        Expense Manager
-                    </a>
+                    <a href="#">Expense Manager</a>
                 </li>
                 <li>
                     <a ui-sref="showIncome">Show Income</a>
@@ -82,9 +81,7 @@
     </div>
     <footer class="footer">
         <div class="container">
-            <p class="text-muted">
-                <div my-notification-scope></div>
-            </p>
+            <p my-notification-scope></p>
         </div>
     </footer>
     <script src="angular/jquery.js"></script>
@@ -95,6 +92,7 @@
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
+    
     </script>
 </body>
 

@@ -1,15 +1,17 @@
-myApp.controller('addIncomeCtl', function($scope, mainService, $state, $rootScope) {
+myApp.controller('addIncomeCtl', function($scope, mainService, $state, $rootScope, config) {
 
+    //***********Initialize*****************************************//
     $scope.income = [];
     $scope.modeofpayments = mainService.modeofpayments();
     $scope.categorys = mainService.categorys();
-    $scope.income.date = new Date();
-    $scope.income.transactionId = mainService.getincomeTransactionId() + 1;
-    $scope.income.amount = parseFloat("0.00").toFixed(2);
+    $scope.income.date = config.currDate;
+    $scope.income.transactionId = mainService.getincomeTransactionId();
 
-    $scope.submitMyForm = function(sel_type, formdata) {
-        mainService.save(sel_type,formdata);
+    //***********For income add new data***************************// 
+    $scope.addIncome = function(formdata) {
+        mainService.save("incomes", formdata);
         $rootScope.$emit('handleTotal');
         $state.go('showIncome');
     };
+    //***********End function**************************************//
 });

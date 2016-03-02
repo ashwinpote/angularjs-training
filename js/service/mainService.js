@@ -57,7 +57,7 @@ myApp.service('mainService', ["$q", "$http", function($q, $http) {
                 obj.expenseData = response.data;
                 deferred.resolve(response.data);
             }).catch(function(e) {
-                console.log("$http error", e);
+                alert("error in getting expense data", e);
                 throw e;
             });
         return deferred.promise;
@@ -70,7 +70,7 @@ myApp.service('mainService', ["$q", "$http", function($q, $http) {
                 obj.incomesData = response.data;
                 deferred.resolve(response.data);
             }).catch(function(e) {
-                console.log("$http  error", e);
+                alert("error in getting income data", e);
                 throw e;
             });
         return deferred.promise;
@@ -110,16 +110,20 @@ myApp.service('mainService', ["$q", "$http", function($q, $http) {
 
     obj.getincomeTransactionId = function() {
         if (obj.incomesData.length > 0) {
-            obj.incomeTransactionId = obj.incomesData[obj.incomesData.length - 1].transactionId;
+            obj.incomeTransactionId = obj.incomesData[obj.incomesData.length - 1].transactionId + 1;
         }
         return obj.incomeTransactionId;
     }
 
     obj.getexpenseTransactionId = function() {
         if (obj.expenseData.length > 0) {
-            obj.expenseTransactionId = obj.expenseData[obj.expenseData.length - 1].transactionId;
+            obj.expenseTransactionId = obj.expenseData[obj.expenseData.length - 1].transactionId + 1;
         }
         return obj.expenseTransactionId;
+    }
+
+    obj.castAmount = function(amt){
+        return parseFloat(amt).toFixed(2);
     }
     return obj;
 }]);

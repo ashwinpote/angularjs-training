@@ -1,12 +1,16 @@
 myApp.controller('showReportCtl', function($scope, mainService, $rootScope) {
+
+    //***********Initialize******************************************************//  
     $scope.income = mainService.incomesData;
     $scope.expense = mainService.expenseData;
+    $scope.categorys = mainService.categorys();
     $scope.showIncome = true;
     $scope.showExpence = false;
-    $scope.value= 'Income';
+    $scope.value = 'Income';
     $rootScope.$emit('handleTotal');
 
-    $scope.radioValue = function(value) {
+    //***********For check change radio button value ***************************// 
+    $scope.changeType = function(value) {
         if (value == "Income") {
             $scope.showIncome = true;
             $scope.showExpence = false;
@@ -15,4 +19,5 @@ myApp.controller('showReportCtl', function($scope, mainService, $rootScope) {
             $scope.showExpence = true;
         }
     }
+    //***********End function*******************************************************//
 });

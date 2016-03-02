@@ -1,18 +1,23 @@
-myApp.controller('showExpenseCtl', function($scope, mainService, $state, $rootScope) {
+myApp.controller('showExpenseCtl', function($scope, mainService, $rootScope) {
 
+    //***********Initialize******************************************************//
     $scope.expense = mainService.expenseData;
-    $scope.expenseTotal = parseFloat(mainService.expenseTotal).toFixed(2);
+    $scope.expenseTotal = mainService.castAmount(mainService.expenseTotal);
     $scope.modeofpayments = mainService.modeofpayments();
     $scope.categorys = mainService.categorys();
     $rootScope.$emit('handleTotal');
 
+    //***********Update service index*******************************************//
     $scope.edit = function(index) {
-        mainService.itemIndex = index;        
+        mainService.itemIndex = index;
     };
+    //***********End function***************************************************//
 
-    $scope.delete = function(selObj,index) {
-        mainService.delete(selObj,index);
+    //***********For delete expense**********************************************//
+    $scope.delete = function(index) {
+        mainService.delete("expense", index);
         $rootScope.$emit('handleTotal');
         $scope.expenseTotal = mainService.getTotal("expense");
     };
+    //***********End function***************************************************//
 });

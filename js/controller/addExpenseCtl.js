@@ -1,15 +1,17 @@
-myApp.controller('addExpenseCtl', function($scope, mainService, $state, $rootScope) {
+myApp.controller('addExpenseCtl', function($scope, mainService, $state, $rootScope, config) {
 
+    //***********Initialize*****************************************//
     $scope.expense = [];
     $scope.modeofpayments = mainService.modeofpayments();
     $scope.categorys = mainService.categorys();
-    $scope.expense.date = new Date();
-    $scope.expense.transactionId = mainService.getexpenseTransactionId() + 1;
-    $scope.expense.amount = parseFloat("0.00").toFixed(2);
+    $scope.expense.date = config.currDate;
+    $scope.expense.transactionId = mainService.getexpenseTransactionId();
 
-    $scope.submitMyForm = function(sel_type, formdata) {
-        mainService.save(sel_type, formdata);
+    //***********For expense add new data***************************// 
+    $scope.addExpense = function(formdata) {
+        mainService.save("expense", formdata);
         $rootScope.$emit('handleTotal');
         $state.go('showExpense');
     };
+    //***********End function**************************************//
 });

@@ -1,8 +1,9 @@
-myApp.controller('myController', function($scope, mainService, $rootScope) {
+myApp.controller('myExpMgr', function($scope, mainService, $rootScope, config) {
 
-    $scope.orderByField = 'transactionId';
-    $scope.reverseSort = false;
-    $scope.notificationMsg = "No Notification...";
+    //***********Initialize******************************************************//    
+    $scope.orderByField = config.orderby;
+    $scope.reverseSort = config.sortChk;
+    $scope.notificationMsg = config.notifiyMsg;
 
     //***********For income/expense data load from json***************************// 
     mainService.getincomejson().then(function(data) {
@@ -18,19 +19,19 @@ myApp.controller('myController', function($scope, mainService, $rootScope) {
     function initTotal() {
         mainService.incomeTotal = mainService.getTotal("income");
         mainService.expenseTotal = mainService.getTotal("expense");
-        $scope.mainincomeTotal = parseFloat(mainService.incomeTotal).toFixed(2);
-        $scope.mainexpenseTotal = parseFloat(mainService.expenseTotal).toFixed(2);
-        $scope.mainTotal = parseFloat($scope.mainincomeTotal - $scope.mainexpenseTotal).toFixed(2);
+        $scope.mainincomeTotal = mainService.castAmount(mainService.incomeTotal);
+        $scope.mainexpenseTotal = mainService.castAmount(mainService.expenseTotal);
+        $scope.mainTotal = mainService.castAmount($scope.mainincomeTotal - $scope.mainexpenseTotal);
     }
     //***********End function*******************************************************//
 
-    //***********For calculate totals from child scope *****************************// 
+    //***********call calculate totals from child controller scope *****************// 
     $rootScope.$on('handleTotal', function(event, args) {
         initTotal();
     });
     //***********End function*******************************************************//
 
-    //***********For notification from child scope *********************************// 
+    //***********call notification from child controller scope *********************// 
     $rootScope.$on('handlenotify', function(event, args) {
         $scope.notificationMsg = args;
     });
