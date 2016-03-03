@@ -3,30 +3,29 @@ myApp.controller('showSettingCtl', function($scope, mainService, $rootScope, $fi
     //***********Initialize******************************************************//  
     var amt = { "type": "", "amount": "", "date": "date", "category": "" };
     var data = [];
-    var showNotify = "";
     var notification = "";
+    var showText = "";
     $scope.categorys = mainService.categorys();
     $rootScope.$emit('handleTotal');
 
     //***********For check change value in radio button***************************//
     $scope.optValue = function(value) {
-        $scope.categorys = mainService.categorys();
-        checkRadioOpt = value;
+        $scope.data.value = value;
     }
 
     //***********For update the nodify data*************************************//
     $scope.submitNotify = function(data) {
         mainService.saveNotify(data, data.value);
-        showNotify(data.value, data.recurrType);
+        showNotifyed(data.value, data.recurrType);
         settingForm.reset();
     }
     //***********End function*****************************************************//
 
     //***********For add data into notify object *********************************//
-    function showNotify(checkRadioOpt, recurType) {
-        if (checkRadioOpt == "Income") {
+    function showNotifyed(checkOpt, recurType) {
+        if (checkOpt == "Income") {
             bindNotify("Income", mainService.incomesNotify, mainService.incomesData, recurType);
-        } else if (checkRadioOpt == "Expense") {
+        } else if (checkOpt == "Expense") {
             bindNotify("Expense", mainService.expenseNotify, mainService.expenseData, recurType);
         }
     }
@@ -40,12 +39,12 @@ myApp.controller('showSettingCtl', function($scope, mainService, $rootScope, $fi
                     amt.type = selType;
                     amt.amount = mainArr[j].amount;
                     if (recurType == "yearly") {
-                        var dob = new Date(mainArr[j].date);
-                        userdob.setYear(dob.getFullYear() + 1)
+                        var userdob = new Date(mainArr[j].date);
+                        userdob.setYear(userdob.getFullYear() + 1)
                         amt.date = $filter('date')(new Date(userdob), 'dd-MM-yyyy');
                     } else {
-                        var dob = new Date(mainArr[j].date);
-                        userdob.setMonth(dob.getMonth() + 1)
+                        var userdob = new Date(mainArr[j].date);
+                        userdob.setMonth(userdob.getMonth() + 1)
                         amt.date = $filter('date')(new Date(userdob), 'dd-MM-yyyy');
                     }
                     amt.category = notifyArr[i].category;
@@ -56,8 +55,8 @@ myApp.controller('showSettingCtl', function($scope, mainService, $rootScope, $fi
         for (var i = 0; i < data.length; i++) {
             notification = "[ " + data[i]["type"] + " -- " + data[i]["category"] + " -- Due Date: " + data[i]["date"] + " -- amount: " + data[i]["amount"] + " ], ";
         }
-        showNotify += notification;
-        $rootScope.$emit('handlenotify', showNotify);
+        showText += notification;
+        $rootScope.$emit('handlenotify', showText);
     }
     //***********End function*******************************************************//
 });
