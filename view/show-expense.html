@@ -59,7 +59,7 @@
                 <td class="center_txt">{{exp.payer}}</td>
                 <td class="center_txt">{{exp.payee}}</td>
                 <td class="center_txt">{{exp.category}}</td>
-                <td class="center_txt">{{exp.amount}}</td>
+                <td class="center_txt">{{exp.amount | number:2 }}</td>
                 <td class="center_txt">{{exp.date | date : 'dd-MM-yyyy'}}</td>
                 <td class="center_txt">{{exp.modeOfPayment}}</td>
                 <td class="center_txt">{{exp.noteType}}</td>
